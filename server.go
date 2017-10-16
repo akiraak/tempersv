@@ -20,7 +20,7 @@ func main() {
 			temps := strings.Split(lines[1], " ")
 			celsius := temps[2]
 			fahrenheit := temps[3]
-			output = fmt.Sprintf("akiraak宅の室温\n摂氏:%s 華氏:%s", celsius, fahrenheit)
+			output = fmt.Sprintf("サンフランシスコ akiraak宅の室温\n摂氏:%s 華氏:%s", celsius, fahrenheit)
 		} else {
 			output = err.Error()
 		}
