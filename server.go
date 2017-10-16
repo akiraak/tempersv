@@ -15,14 +15,16 @@ func main() {
 		cmdoutput, err := cmd.Output()
 		output := string(cmdoutput)
 
-		if err != nil {
+		if err == nil {
 			lines := strings.Split(string(cmdoutput), "\n")
 			temps := strings.Split(lines[1], " ")
 			celsius := temps[2]
 			fahrenheit := temps[3]
 			output = fmt.Sprintf("akiraak宅の室温\n摂氏:%s 華氏:%s", celsius, fahrenheit)
+		} else {
+			output = err.Error()
 		}
-		//fmt.Println(celsius, fahrenheit)
+		fmt.Println(output)
 		return c.String(http.StatusOK, output)
 	})
 	e.Logger.Fatal(e.Start(":1323"))
