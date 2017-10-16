@@ -1,0 +1,16 @@
+package: github.com/akiraak/tempersv
+import:
+- package: github.com/labstack/echo
+  version: ^3.2.3
+  subpackages:
+  - '...'
+- package: github.com/labstack/gommon
+  version: ^0.2.3
+  subpackages:
+  - color
+- package: github.com/mattn/go-colorable
+  version: ^0.0.9
+- package: github.com/mattn/go-isatty
+  version: ^0.0.3
+- package: github.com/valyala/fasttemplate
+- package: golang.org/x/crypto
