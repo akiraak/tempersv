@@ -5,19 +5,24 @@ import (
 	"github.com/labstack/echo"
 	"net/http"
 	"os/exec"
+	"strings"
 )
 
 func main() {
 	e := echo.New()
 	e.GET("/", func(c echo.Context) error {
-		cmd := exec.Command("date")
+		cmd := exec.Command("temper-poll")
 		cmdoutput, err := cmd.Output()
 		output := string(cmdoutput)
-		if err != nil {
-			output = fmt.Sprintf("%s\n%s", output, err)
-		}
-		fmt.Println(output)
 
+		if err != nil {
+			lines := strings.Split(string(cmdoutput), "\n")
+			temps := strings.Split(lines[1], " ")
+			celsius := temps[2]
+			fahrenheit := temps[3]
+			output = fmt.Sprintf("akiraak宅の室温\n摂氏:%s 華氏:%s", celsius, fahrenheit)
+		}
+		//fmt.Println(celsius, fahrenheit)
 		return c.String(http.StatusOK, output)
 	})
 	e.Logger.Fatal(e.Start(":1323"))
